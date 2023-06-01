@@ -65,7 +65,7 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID}}
           token: ${{ secrets.BOT_TOKEN}}
-          document: /home/runner/work/hw_devops/hw_devops/app_artifact/*.py"
+          document: main.py
           
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
