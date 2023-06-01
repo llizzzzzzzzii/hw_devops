@@ -28,18 +28,18 @@ jobs:
       - name: Run static code analysis
         run: |
          pip install pylint
-         pylint dist/
+         pylint files/
         
       - name: Check code style
         run: |
          pip install flake8
-         flake8 dist/
+         flake8 files/
 
       - name: Test with pytest
         run: pytest
          
       - name: Build application
-        run: python3 dist/
+        run: python3 files/
         
 #       - name: Send notification on Telegram
 #         uses: appleboy/telegram-action@master
@@ -55,7 +55,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: app_artifact
-            path: dist/
+            path: files/
             
   notification:
      needs: build
@@ -67,7 +67,7 @@ jobs:
         with:
           name: app_artifact
 
-      - name: send to telegram
+      - name: Send to telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.CHAT_ID}}
