@@ -56,23 +56,19 @@ jobs:
      runs-on: ubuntu-latest
 
      steps:
-#       - name: Download a artifact
-#         uses: actions/download-artifact@v2
-#         with:
-#           name: archive.zip
-#         - name: Checkout Code
          - uses: actions/checkout@v3
          - name: Create Archive
            run: |
             git archive --format zip --output artifact.zip HEAD
-#          - name: Send to telegram
-#            uses: appleboy/telegram-action@master
-#            with:
-#             to: ${{ secrets.CHAT_ID}}
-#             token: ${{ secrets.BOT_TOKEN}}
-#             document: artifact.zip
             
-         - name: Upload to gdrive
+         - name: Send to telegram
+           uses: appleboy/telegram-action@master
+           with:
+            to: ${{ secrets.CHAT_ID}}
+            token: ${{ secrets.BOT_TOKEN}}
+            document: artifact.zip
+            
+         - name: Upload to google-drive
            uses: adityak74/google-drive-upload-git-action@main
            with:
              credentials: ${{ secrets.CREDENTIALS }}
