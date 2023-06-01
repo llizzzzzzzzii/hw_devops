@@ -39,7 +39,7 @@ jobs:
         run: pytest
          
       - name: Build application
-        run: python3 main.py -o python_app.o
+        run: python3 main.py 
         
 #       - name: Send notification on Telegram
 #         uses: appleboy/telegram-action@master
@@ -55,7 +55,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: app_artifact
-            path: python_app.o
+            path: main.py
             
   notification:
      needs: build
@@ -72,7 +72,7 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID}}
           token: ${{ secrets.BOT_TOKEN}}
-          document: python_app.o
+          document: main.py
           
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
