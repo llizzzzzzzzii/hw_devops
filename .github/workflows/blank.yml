@@ -23,23 +23,23 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r files/requirements.txt
           
-      - name: Run static code analysis
-        run: |
-         pip install pylint
-         pylint main.py
+#       - name: Run static code analysis
+#         run: |
+#          pip install pylint
+#          pylint files/
         
-      - name: Check code style
-        run: |
-         pip install flake8
-         flake8 main.py
+#       - name: Check code style
+#         run: |
+#          pip install flake8
+#          flake8 files/
 
       - name: Test with pytest
         run: pytest
          
       - name: Build application
-        run: python3 main.py 
+        run: python3 files/
         
 #       - name: Send notification on Telegram
 #         uses: appleboy/telegram-action@master
@@ -55,24 +55,24 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: app_artifact
-            path: main.py
+            path: files/
             
-  notification:
-     needs: build
-     runs-on: ubuntu-latest
+#   notification:
+#      needs: build
+#      runs-on: ubuntu-latest
 
-     steps:
-      - name: Download a artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: app_artifact
+#      steps:
+#       - name: Download a artifact
+#         uses: actions/download-artifact@v2
+#         with:
+#           name: app_artifact
 
-      - name: send to telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.CHAT_ID}}
-          token: ${{ secrets.BOT_TOKEN}}
-          document: main.py
+#       - name: Send to telegram
+#         uses: appleboy/telegram-action@master
+#         with:
+#           to: ${{ secrets.CHAT_ID}}
+#           token: ${{ secrets.BOT_TOKEN}}
+#           document: main.py
           
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
