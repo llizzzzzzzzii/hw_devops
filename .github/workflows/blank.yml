@@ -37,6 +37,15 @@ jobs:
         run: |
          pip install flake8
          flake8 main.py
+       
+      - name: Send notification on Telegram
+        uses: appleboy/telegram-action@master
+        with:
+         to: ${{ secrets.CHAT_ID }}
+         token: ${{ secrets.BOT_TOKEN }}
+         message: |
+            Build ${{ job.status }} on branch ${{ github.ref }}:
+            - Commit: ${{ github.sha }}
 
       - name: Test with pytest
         run: pytest
