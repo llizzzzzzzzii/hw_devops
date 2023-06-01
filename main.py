@@ -1,5 +1,5 @@
 """
-function about user info
+functions for getting user information
 """
 
 import datetime
