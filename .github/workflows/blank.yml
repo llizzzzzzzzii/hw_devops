@@ -41,17 +41,10 @@ jobs:
       - name: Build application
         run: |
          pip install pyinstaller
-         pyinstaller --onefile  main.py 
+         pyinstaller --onefile  main.exe
 
-          
-#       - name: Create artifacts
-#         if: success()
-#         uses: actions/upload-artifact@v2
-#         with:
-#             name: app_artifact
-#             path: dist/
             
-  notification:
+  upload-the-archive:
      needs: build
      runs-on: ubuntu-latest
 
