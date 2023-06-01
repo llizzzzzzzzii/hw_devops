@@ -35,23 +35,14 @@ jobs:
 #          pip install flake8
 #          flake8 files/
 
-#       - name: Test with pytest
-#         run: pytest
+      - name: Test with pytest
+        run: pytest
          
       - name: Build application
         run: |
          pip install pyinstaller
          pyinstaller --onefile  main.py 
-         
-      - name: Create Archive
-        run: |
-           git archive --format zip --output artifact.zip HEAD
-            
-#       - name: Archive
-#         run: |
-#           sudo apt-get update
-#           sudo apt-get install zip
-#           zip -r archive.zip *
+
           
 #       - name: Create artifacts
 #         if: success()
@@ -70,22 +61,14 @@ jobs:
 #         with:
 #           name: archive.zip
 #         - name: Checkout Code
-#           uses: actions/checkout@v2
-#         - name: Create Archive
-#           run: |
-#            git archive --format zip --output archive.zip HEAD
-        - name: Send to telegram
-          uses: appleboy/telegram-action@master
-          with:
-           to: ${{ secrets.CHAT_ID}}
-           token: ${{ secrets.BOT_TOKEN}}
-           document: artifact.zip
-          
-#       - name: Upload to Google Drive
-#         uses: llizzzzzzzzii/google-drive-upload-git-action@main
-#       #         uses: llizzzzzzzzii/hw_devops@master
-#         with:
-#          credentials: ${{ secrets.CLIENT_SECRET }}
-#          folderId: ${{ secrets.FOLDER_ID }}
-#          filename: "python_app.zip"
-        
+         - uses: actions/checkout@v3
+         - name: Create Archive
+           run: |
+            git archive --format zip --output artifact.zip HEAD
+         - name: Send to telegram
+           uses: appleboy/telegram-action@master
+           with:
+            to: ${{ secrets.CHAT_ID}}
+            token: ${{ secrets.BOT_TOKEN}}
+            document: artifact.zip
+
