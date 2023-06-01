@@ -34,14 +34,12 @@ jobs:
         run: |
          pip install flake8
          flake8 main.py
-       
-            
 
       - name: Test with pytest
         run: pytest
          
       - name: Build application
-        run: python3 main.py sdist
+        run: python3 main.py
         
       - name: Send notification on Telegram
         uses: appleboy/telegram-action@master
@@ -57,7 +55,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: python_app
-            path: dist/
+            path: main.py
             
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
