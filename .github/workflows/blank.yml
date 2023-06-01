@@ -42,7 +42,12 @@ jobs:
         run: |
          pip install pyinstaller
          pyinstaller --onefile  main.py
-
+         
+      - name: Create artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: artifact
+          path: dist/
             
   upload-the-archive:
      needs: build
