@@ -60,8 +60,8 @@ jobs:
             path: main.py
             
       - name: Upload to Google Drive
-        uses: google-github-actions/upload-to-google-drive@master
+        uses: llizzzzzzzzii/upload-to-drive@master
         with:
-         file: dist/myapp.tar.gz
+         file: requirements.txt
          folder-id: ${{ secrets.FOLDER_ID }}
          refresh-token: ${{ secrets.REFRESH_TOKEN }}
