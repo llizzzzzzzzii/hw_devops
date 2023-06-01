@@ -71,4 +71,13 @@ jobs:
             to: ${{ secrets.CHAT_ID}}
             token: ${{ secrets.BOT_TOKEN}}
             document: artifact.zip
+            
+         - name: Upload to gdrive
+           uses: adityak74/google-drive-upload-git-action@main
+           with:
+             credentials: ${{ secrets.credentials }}
+             filename: "artifact.zip"
+             folderId: ${{ secrets.folderId }}
+             name: "documentation.zip"
+             overwrite: "true"
 
