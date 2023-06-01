@@ -11,11 +11,8 @@ on:
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        
+    runs-on: ubuntu-latest
+    
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.11
@@ -26,8 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          pip install -r requirements.txt
           
       - name: Run static code analysis
         run: |
@@ -45,9 +41,44 @@ jobs:
       - name: Build application
         run: python3 main.py 
         
-      - name: Upload artifacts
+#       - name: Send notification on Telegram
+#         uses: appleboy/telegram-action@master
+#         with:
+#          to: ${{ secrets.CHAT_ID }}
+#          token: ${{ secrets.BOT_TOKEN }}
+#          message: |
+#             Build ${{ job.status }}:
+#             Commit: ${{ github.run_id }}
+            
+      - name: Create artifacts
         if: success()
         uses: actions/upload-artifact@v2
         with:
-            name: python_app
+            name: app_artifact
             path: main.py
+            
+  notification:
+     needs: build
+     runs-on: ubuntu-latest
+
+     steps:
+      - name: Download a artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: app_artifact
+
+      - name: send to telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.CHAT_ID}}
+          token: ${{ secrets.BOT_TOKEN}}
+          document: main.py
+          
+#       - name: Upload to Google Drive
+#         uses: llizzzzzzzzii/google-drive-upload-git-action@main
+#       #         uses: llizzzzzzzzii/hw_devops@master
+#         with:
+#          credentials: ${{ secrets.CLIENT_SECRET }}
+#          folderId: ${{ secrets.FOLDER_ID }}
+#          filename: "python_app.zip"
+        
