@@ -1,4 +1,4 @@
-name: build
+name: python application
 
 on:
   push:
@@ -27,3 +27,10 @@ jobs:
 
       - name: Test with pytest
         run: pytest
+        
+      - name: Upload artifact
+        if: success()
+        uses: actions/upload-artifact@v2
+        with:
+         name: python_app
+         path: calculate_average.py
