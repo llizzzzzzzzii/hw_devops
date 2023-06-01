@@ -28,18 +28,18 @@ jobs:
       - name: Run static code analysis
         run: |
          pip install pylint
-         pylint main.py
+         pylint dist/
         
       - name: Check code style
         run: |
          pip install flake8
-         flake8 main.py
+         flake8 dist/
 
       - name: Test with pytest
         run: pytest
          
       - name: Build application
-        run: python3 main.py 
+        run: python3 dist/
         
 #       - name: Send notification on Telegram
 #         uses: appleboy/telegram-action@master
