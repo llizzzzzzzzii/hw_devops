@@ -39,7 +39,7 @@ jobs:
         run: pytest
          
       - name: Build application
-        run: python3 main.py test_average.py -o python_app.o
+        run: python3 main.py -o python_app.o
         
 #       - name: Send notification on Telegram
 #         uses: appleboy/telegram-action@master
@@ -50,7 +50,7 @@ jobs:
 #             Build ${{ job.status }}:
 #             Commit: ${{ github.run_id }}
             
-      - name: Upload artifacts
+      - name: Create artifacts
         if: success()
         uses: actions/upload-artifact@v2
         with:
