@@ -34,3 +34,5 @@ jobs:
         with:
          name: python_app
          path: main.py
+      - name: Build application
+        run: python main.py sdist bdist_wheel
