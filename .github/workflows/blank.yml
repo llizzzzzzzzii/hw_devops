@@ -61,10 +61,10 @@ jobs:
      runs-on: ubuntu-latest
 
      steps:
-      - name: Download a artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: archive.zip
+#       - name: Download a artifact
+#         uses: actions/download-artifact@v2
+#         with:
+#           name: archive.zip
 
       - name: Send to telegram
         uses: appleboy/telegram-action@master
