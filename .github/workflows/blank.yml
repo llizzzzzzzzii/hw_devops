@@ -64,7 +64,7 @@ jobs:
       - name: Download a artifact
         uses: actions/download-artifact@v2
         with:
-          name: app_artifact
+          name: archive.zip
 
       - name: Send to telegram
         uses: appleboy/telegram-action@master
