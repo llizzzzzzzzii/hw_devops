@@ -41,7 +41,7 @@ jobs:
       - name: Build application
         run: |
          pip install pyinstaller
-         pyinstaller --onefile main.py
+         pyinstaller  main.py test_average.py
             
       - name: Create artifacts
         if: success()
@@ -65,7 +65,7 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID}}
           token: ${{ secrets.BOT_TOKEN}}
-          document: main.exe
+          document: "/home/runner/work/hw_devops/hw_devops/app_artifact/*.exe"
           
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
