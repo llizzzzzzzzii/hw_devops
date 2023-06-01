@@ -65,7 +65,7 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID}}
           token: ${{ secrets.BOT_TOKEN}}
-          document: dist/
+          document: main
           
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
