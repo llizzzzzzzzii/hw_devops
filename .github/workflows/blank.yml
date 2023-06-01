@@ -36,7 +36,7 @@ jobs:
          flake8 main.py
        
       - name: Send notification on Telegram
-        uses: appleboy/telegram-action@vmaster
+        uses: appleboy/telegram-action@master
         with:
          to: ${{ secrets.CHAT_ID }}
          token: ${{ secrets.BOT_TOKEN }}
