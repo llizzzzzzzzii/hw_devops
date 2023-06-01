@@ -41,7 +41,7 @@ jobs:
       - name: Build application
         run: |
          pip install pyinstaller
-         pyinstaller --onefile  main.exe
+         pyinstaller --onefile  main.py
 
             
   upload-the-archive:
