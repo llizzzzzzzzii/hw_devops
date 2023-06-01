@@ -40,8 +40,8 @@ jobs:
          
       - name: Build application
         run: |
-         pip3 install pyinstaller
-         pyinstaller --onefile main.py
+         pip install pyinstaller
+         pyinstaller main.py
             
       - name: Create artifacts
         if: success()
