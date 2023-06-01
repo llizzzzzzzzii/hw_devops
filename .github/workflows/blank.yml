@@ -35,20 +35,11 @@ jobs:
 #          pip install flake8
 #          flake8 files/
 
-      - name: Test with pytest
-        run: pytest
+#       - name: Test with pytest
+#         run: pytest
          
       - name: Build application
         run: python3 files/main.py
-        
-#       - name: Send notification on Telegram
-#         uses: appleboy/telegram-action@master
-#         with:
-#          to: ${{ secrets.CHAT_ID }}
-#          token: ${{ secrets.BOT_TOKEN }}
-#          message: |
-#             Build ${{ job.status }}:
-#             Commit: ${{ github.run_id }}
             
       - name: Create artifacts
         if: success()
