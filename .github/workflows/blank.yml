@@ -43,12 +43,18 @@ jobs:
          pip install pyinstaller
          pyinstaller --onefile  main.py 
             
-      - name: Create artifacts
-        if: success()
-        uses: actions/upload-artifact@v2
-        with:
-            name: app_artifact
-            path: dist/
+      - name: Archive
+        run: |
+          sudo apt-get update
+          sudo apt-get install zip
+          zip -r archive.zip *
+          
+#       - name: Create artifacts
+#         if: success()
+#         uses: actions/upload-artifact@v2
+#         with:
+#             name: app_artifact
+#             path: dist/
             
   notification:
      needs: build
@@ -65,7 +71,7 @@ jobs:
         with:
           to: ${{ secrets.CHAT_ID}}
           token: ${{ secrets.BOT_TOKEN}}
-          document: main.exe
+          document: archive.zip
           
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
