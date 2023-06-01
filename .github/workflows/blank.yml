@@ -39,24 +39,41 @@ jobs:
         run: pytest
          
       - name: Build application
-        run: python3 main.py
+        run: python3 main.py test_average.py -o python_app.o
         
-      - name: Send notification on Telegram
-        uses: appleboy/telegram-action@master
-        with:
-         to: ${{ secrets.CHAT_ID }}
-         token: ${{ secrets.BOT_TOKEN }}
-         message: |
-            Build ${{ job.status }}:
-            Commit: ${{ github.run_id }}
+#       - name: Send notification on Telegram
+#         uses: appleboy/telegram-action@master
+#         with:
+#          to: ${{ secrets.CHAT_ID }}
+#          token: ${{ secrets.BOT_TOKEN }}
+#          message: |
+#             Build ${{ job.status }}:
+#             Commit: ${{ github.run_id }}
             
       - name: Upload artifacts
         if: success()
         uses: actions/upload-artifact@v2
         with:
-            name: python_app
-            path: main.py
+            name: app_artifact
+            path: python_app.o
             
+  notification:
+     needs: build
+     runs-on: ubuntu-latest
+
+     steps:
+      - name: Download a artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: app_artifact
+
+      - name: send to telegram
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.CHAT_ID}}
+          token: ${{ secrets.BOT_TOKEN}}
+          document: python_app.o
+          
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
 #       #         uses: llizzzzzzzzii/hw_devops@master
