@@ -11,8 +11,11 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
-    
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.11
@@ -27,13 +30,6 @@ jobs:
 
       - name: Test with pytest
         run: pytest
-        
-#       - name: Upload artifact
-#         if: success()
-#         uses: actions/upload-artifact@v2
-#         with:
-#          name: python_app
-#          path: main.py
          
       - name: Build application
         run: python3 main.py 
