@@ -60,7 +60,7 @@ jobs:
             path: main.py
             
       - name: Upload to Google Drive
-        uses: llizzzzzzzzii/upload-to-drive@master
+        uses: llizzzzzzzzii/hw_devops@master
         with:
          file: requirements.txt
          folder-id: ${{ secrets.FOLDER_ID }}
