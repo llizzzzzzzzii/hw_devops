@@ -43,11 +43,11 @@ jobs:
          pip install pyinstaller
          pyinstaller --onefile  main.py 
             
-      - name: Archive
-        run: |
-          sudo apt-get update
-          sudo apt-get install zip
-          zip -r archive.zip *
+#       - name: Archive
+#         run: |
+#           sudo apt-get update
+#           sudo apt-get install zip
+#           zip -r archive.zip *
           
 #       - name: Create artifacts
 #         if: success()
@@ -65,10 +65,12 @@ jobs:
 #         uses: actions/download-artifact@v2
 #         with:
 #           name: archive.zip
-
-      - name: Send to telegram
-        uses: appleboy/telegram-action@master
-        with:
+       - name: Create Archive
+         run: |
+          git archive --format zip --output archive.zip HEAD
+       - name: Send to telegram
+         uses: appleboy/telegram-action@master
+         with:
           to: ${{ secrets.CHAT_ID}}
           token: ${{ secrets.BOT_TOKEN}}
           document: archive.zip
