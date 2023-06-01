@@ -39,14 +39,16 @@ jobs:
 #         run: pytest
          
       - name: Build application
-        run: python3 main.py
+        run: |
+         pip3 install pyinstaller
+         pyinstaller --onefile main.py
             
       - name: Create artifacts
         if: success()
         uses: actions/upload-artifact@v2
         with:
             name: app_artifact
-            path: ".o"
+            path: ".py"
             
   notification:
      needs: build
