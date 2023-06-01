@@ -36,9 +36,10 @@ jobs:
 #          path: main.py
          
       - name: Build application
-        run: python main.py sdist bdist_wheel
+        run: python3 main.py 
         
       - name: Upload artifacts
+        if: success()
         uses: actions/upload-artifact@v2
         with:
             name: python_app
