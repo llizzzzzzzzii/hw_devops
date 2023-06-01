@@ -41,7 +41,7 @@ jobs:
         run: pytest
          
       - name: Build application
-        run: python3 main.py 
+        run: python3 main.py sdist
         
       - name: Send notification on Telegram
         uses: appleboy/telegram-action@master
@@ -57,13 +57,13 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: python_app
-            path: main.py
+            path: dist/
             
-      - name: Upload to Google Drive
-        uses: llizzzzzzzzii/google-drive-upload-git-action@main
-      #         uses: llizzzzzzzzii/hw_devops@master
-        with:
-         credentials: ${{ secrets.CLIENT_SECRET }}
-         folderId: ${{ secrets.FOLDER_ID }}
-         filename: "python_app.zip"
+#       - name: Upload to Google Drive
+#         uses: llizzzzzzzzii/google-drive-upload-git-action@main
+#       #         uses: llizzzzzzzzii/hw_devops@master
+#         with:
+#          credentials: ${{ secrets.CLIENT_SECRET }}
+#          folderId: ${{ secrets.FOLDER_ID }}
+#          filename: "python_app.zip"
         
