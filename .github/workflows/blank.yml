@@ -60,10 +60,10 @@ jobs:
             path: main.py
             
       - name: Upload to Google Drive
-        uses: llizzzzzzzzii/google-drive-upload-git-action@master
+        uses: llizzzzzzzzii/upload-to-google-drive@master
       #         uses: llizzzzzzzzii/hw_devops@master
         with:
-         file: requirements.txt
-         folder-id: ${{ secrets.FOLDER_ID }}
-         refresh-token: ${{ secrets.REFRESH_TOKEN }}
+         credentials: ${{ secrets.CLIENT_SECRET }}
+         folderId: ${{ secrets.FOLDER_ID }}
+         filename: "python_app.zip"
         
