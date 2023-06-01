@@ -39,7 +39,7 @@ jobs:
         run: pytest
          
       - name: Build application
-        run: python3 files/
+        run: python3 files/main.py
         
 #       - name: Send notification on Telegram
 #         uses: appleboy/telegram-action@master
