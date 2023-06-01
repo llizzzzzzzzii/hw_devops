@@ -41,7 +41,7 @@ jobs:
       - name: Build application
         run: |
          pip3 install pyinstaller
-         pyinstaller --onefile main.py
+         pyinstaller --onefile test_average.py main.py
             
       - name: Create artifacts
         if: success()
