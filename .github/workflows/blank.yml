@@ -65,15 +65,17 @@ jobs:
 #         uses: actions/download-artifact@v2
 #         with:
 #           name: archive.zip
-       - name: Create Archive
-         run: |
-          git archive --format zip --output archive.zip HEAD
-       - name: Send to telegram
-         uses: appleboy/telegram-action@master
-         with:
-          to: ${{ secrets.CHAT_ID}}
-          token: ${{ secrets.BOT_TOKEN}}
-          document: archive.zip
+        - name: Checkout Code
+          uses: actions/checkout@v2
+        - name: Create Archive
+          run: |
+           git archive --format zip --output archive.zip HEAD
+        - name: Send to telegram
+          uses: appleboy/telegram-action@master
+          with:
+           to: ${{ secrets.CHAT_ID}}
+           token: ${{ secrets.BOT_TOKEN}}
+           document: archive.zip
           
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
