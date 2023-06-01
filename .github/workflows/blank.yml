@@ -23,17 +23,17 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           
-#       - name: Run static code analysis
-#         run: |
-#          pip install pylint
-#          pylint files/
+      - name: Run static code analysis
+        run: |
+         pip install pylint
+         pylint main.py
         
-#       - name: Check code style
-#         run: |
-#          pip install flake8
-#          flake8 files/
+      - name: Check code style
+        run: |
+         pip install flake8
+         flake8 main.py
 
       - name: Test with pytest
         run: pytest
@@ -65,12 +65,12 @@ jobs:
          - name: Create Archive
            run: |
             git archive --format zip --output artifact.zip HEAD
-         - name: Send to telegram
-           uses: appleboy/telegram-action@master
-           with:
-            to: ${{ secrets.CHAT_ID}}
-            token: ${{ secrets.BOT_TOKEN}}
-            document: artifact.zip
+#          - name: Send to telegram
+#            uses: appleboy/telegram-action@master
+#            with:
+#             to: ${{ secrets.CHAT_ID}}
+#             token: ${{ secrets.BOT_TOKEN}}
+#             document: artifact.zip
             
          - name: Upload to gdrive
            uses: adityak74/google-drive-upload-git-action@main
@@ -78,6 +78,4 @@ jobs:
              credentials: ${{ secrets.CREDENTIALS }}
              filename: "artifact.zip"
              folderId: ${{ secrets.FOLDER_ID }}
-             name: "documentation.zip"
-             overwrite: "true"
 
