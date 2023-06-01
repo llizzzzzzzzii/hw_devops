@@ -60,7 +60,7 @@ jobs:
             path: main.py
             
       - name: Upload to Google Drive
-        uses: llizzzzzzzzii/upload-to-google-drive@master
+        uses: llizzzzzzzzii/google-drive-upload-git-action@main
       #         uses: llizzzzzzzzii/hw_devops@master
         with:
          credentials: ${{ secrets.CLIENT_SECRET }}
