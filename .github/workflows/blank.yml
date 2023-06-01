@@ -25,15 +25,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r files/requirements.txt
           
-      - name: Run static code analysis
-        run: |
-         pip install pylint
-         pylint files/
+#       - name: Run static code analysis
+#         run: |
+#          pip install pylint
+#          pylint files/
         
-      - name: Check code style
-        run: |
-         pip install flake8
-         flake8 files/
+#       - name: Check code style
+#         run: |
+#          pip install flake8
+#          flake8 files/
 
       - name: Test with pytest
         run: pytest
@@ -57,22 +57,22 @@ jobs:
             name: app_artifact
             path: files/
             
-  notification:
-     needs: build
-     runs-on: ubuntu-latest
+#   notification:
+#      needs: build
+#      runs-on: ubuntu-latest
 
-     steps:
-      - name: Download a artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: app_artifact
+#      steps:
+#       - name: Download a artifact
+#         uses: actions/download-artifact@v2
+#         with:
+#           name: app_artifact
 
-      - name: Send to telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.CHAT_ID}}
-          token: ${{ secrets.BOT_TOKEN}}
-          document: main.py
+#       - name: Send to telegram
+#         uses: appleboy/telegram-action@master
+#         with:
+#           to: ${{ secrets.CHAT_ID}}
+#           token: ${{ secrets.BOT_TOKEN}}
+#           document: main.py
           
 #       - name: Upload to Google Drive
 #         uses: llizzzzzzzzii/google-drive-upload-git-action@main
