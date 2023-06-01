@@ -1,5 +1,5 @@
 import pytest
-from main import average
+from files.main import average
 
 @pytest.mark.parametrize(
     ('num1', 'num2', 'num3', 'result'), [
