@@ -30,3 +30,5 @@ def get_year_user(age):
 def get_ifo_about_user(name, age):
     """Getting full information about the user"""
     return hello_user(name) + get_age_user(age) + get_year_user(age)
+
+print(get_ifo_about_user('Petya',15))
