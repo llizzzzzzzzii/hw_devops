@@ -5,7 +5,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 FROM python:3-alpine
 WORKDIR /app
-COPY --from=build /app/main.py ./main.py
+COPY --from=build /app ./main.py
 CMD ["python", "./main.py"]
 
 
