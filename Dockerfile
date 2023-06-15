@@ -10,7 +10,7 @@
 
 
 
-FROM python
+FROM python:3-alpine
 
 WORKDIR /app
 
