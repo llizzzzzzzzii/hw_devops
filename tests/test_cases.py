@@ -1,5 +1,5 @@
 import pytest
-from app.main import get_ifo_about_user, get_year_user, get_age_user, hello_user
+from main import get_ifo_about_user, get_year_user, get_age_user, hello_user
 
 
 @pytest.mark.parametrize(
