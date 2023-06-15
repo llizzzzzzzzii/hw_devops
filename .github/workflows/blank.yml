@@ -41,7 +41,7 @@ jobs:
       - name: Build application
         run: |
          pip install pyinstaller
-         pyinstaller --onefile  app/main.py
+         pyinstaller --onefile  main.py
          
       - name: Create artifacts
         uses: actions/upload-artifact@v3
